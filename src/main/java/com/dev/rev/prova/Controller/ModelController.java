@@ -1,16 +1,18 @@
 package com.dev.rev.prova.Controller;
 
 import com.dev.rev.prova.Entities.Model;
+import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
 import com.dev.rev.prova.Services.ModelService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "Model's API")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/model")
 @RestController
 public class ModelController {
@@ -18,11 +20,13 @@ public class ModelController {
     @Autowired
     private ModelService modelService;
 
+    @ApiOperation(value = "Get models by brand")
     @GetMapping("/{brand}")
-    public ResponseEntity<List<Model>> getModelByBrand(@PathVariable("brand") String brand){
+    public ResponseEntity<List<Model>> getModelByBrand(@PathVariable("brand") String brand) throws ModelNotFoundException {
         return modelService.getByBrand(brand);
     }
 
+    @ApiOperation(value = "Get all models of cars")
     @GetMapping("/")
     public ResponseEntity<List<Model>> getAllModels(){
         return modelService.getAllModels();

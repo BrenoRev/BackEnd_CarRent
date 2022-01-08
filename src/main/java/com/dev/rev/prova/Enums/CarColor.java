@@ -2,8 +2,10 @@ package com.dev.rev.prova.Enums;
 
 import lombok.Getter;
 
+import java.io.Serializable;
+
 @Getter
-public enum CarColor {
+public enum CarColor{
 
     AMARELO("Amarelo"),
     AZUL("Azul"),
@@ -20,14 +22,16 @@ public enum CarColor {
     VERMELHO("Vermelho"),
     OUTROS("Outros");
 
-    private String color;
+    private final String cor;
 
     private CarColor(String color) {
-        this.color = color;
+        this.cor = color;
     }
 
     @Override
     public String toString() {
-        return this.color;
+        return this.cor;
     }
+
+
 }

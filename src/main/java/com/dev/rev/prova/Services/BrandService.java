@@ -15,10 +15,6 @@ public class BrandService {
     @Autowired
     private BrandRepository brandRepository;
 
-    public ResponseEntity<Brand> getByName(String name){
-        return new ResponseEntity<Brand>(brandRepository.findByName(name), HttpStatus.OK);
-    }
-
     public ResponseEntity<List<Brand>> getAllBrands(){
         return new ResponseEntity<List<Brand>>(brandRepository.findAll(), HttpStatus.OK);
     }

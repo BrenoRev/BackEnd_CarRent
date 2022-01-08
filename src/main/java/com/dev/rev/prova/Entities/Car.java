@@ -4,6 +4,7 @@ import com.dev.rev.prova.Enums.CarColor;
 import com.dev.rev.prova.Enums.CarFuel;
 import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -33,6 +34,7 @@ public class Car implements Serializable {
     private Brand brand;
 
     @Column(name= "car_type")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Enumerated(EnumType.STRING)
     private CarType carType;
 

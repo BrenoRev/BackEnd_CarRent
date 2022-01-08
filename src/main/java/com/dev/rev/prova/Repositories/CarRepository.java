@@ -1,6 +1,6 @@
-package com.dev.rev.prova.repositories;
+package com.dev.rev.prova.Repositories;
 
-import com.dev.rev.prova.entities.Car;
+import com.dev.rev.prova.Entities.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

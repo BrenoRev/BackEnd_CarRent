@@ -1,18 +1,19 @@
-package com.dev.rev.prova.entities;
+package com.dev.rev.prova.Entities;
 
 import com.dev.rev.prova.Enums.CarColor;
 import com.dev.rev.prova.Enums.CarFuel;
 import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "Car")
@@ -64,4 +65,17 @@ public class Car implements Serializable {
 
     @Column(name = "car_photo")
     private String foto;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Car car = (Car) o;
+        return id != null && Objects.equals(id, car.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

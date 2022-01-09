@@ -8,12 +8,15 @@ import com.dev.rev.prova.Enums.CarType;
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
 import com.dev.rev.prova.Repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.EnumType;
 import javax.transaction.Transactional;
@@ -43,7 +46,7 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    @Transactional
+    @Modifying
     public ResponseEntity<String> deleteCarById(Long id) throws CarNotFoundException {
         try {
             carRepository.deleteById(id);
@@ -99,5 +102,10 @@ public class CarService {
         }
 
         return null;
+    }
+
+    public ResponseEntity<Page<Car>> getPage(Pageable pageable) {
+        Page<Car> pageCars = carRepository.findAll(pageable);
+        return new ResponseEntity<Page<Car>>(pageCars, HttpStatus.OK);
     }
 }

@@ -6,6 +6,10 @@ import com.dev.rev.prova.Services.CarService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -59,5 +63,10 @@ public class CarController {
     @PatchMapping("/{id}")
     public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @Valid @RequestBody Map<Object, Object> fields){
         return carService.patch(id, fields);
+    }
+
+    @GetMapping(value = "/pagination", produces = "application/json")
+    public ResponseEntity<Page<Car>> getCarsByPage(@PageableDefault(direction = Sort.Direction.DESC, size = 10, sort = "price") Pageable pageable){
+        return carService.getPage(pageable);
     }
 }

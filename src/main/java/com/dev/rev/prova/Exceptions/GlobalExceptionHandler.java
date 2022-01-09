@@ -2,6 +2,7 @@ package com.dev.rev.prova.Exceptions;
 
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
 import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
+import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,5 +68,22 @@ public class GlobalExceptionHandler {
         erro.setCurrentDate(LocalDateTime.now().format(formatter));
         return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({PropertyReferenceException.class})
+    protected ResponseEntity<Object> NoPropertyPagination(Exception ex) {
+
+        String errorDescription = ex.getLocalizedMessage();
+
+        if(errorDescription == null) {
+            errorDescription = ex.toString();
+        }
+
+        ErrorDetails erro = new ErrorDetails();
+        erro.setError(errorDescription);
+        erro.setCode(HttpStatus.BAD_REQUEST.toString());
+        erro.setCurrentDate(LocalDateTime.now().format(formatter));
+        return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
 
 }

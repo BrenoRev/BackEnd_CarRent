@@ -1,8 +1,8 @@
 package com.dev.rev.prova.Enums;
 
-import lombok.Getter;
 
-@Getter
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum CarFuel {
     DIESEL("Diesel"),
     FLEX("Flex"),
@@ -10,6 +10,11 @@ public enum CarFuel {
     HIBRIDO("Híbrido");
 
     private String type;
+
+    @JsonValue
+    public String getType() {
+        return type;
+    }
 
     private CarFuel(String type) {
         this.type = type;

@@ -1,13 +1,17 @@
 package com.dev.rev.prova.Enums;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-@Getter
 public enum CarTransmission {
     AUTOMATICO("Automatico"),
     MANUAL("Manual");
 
     private String type;
+
+    @JsonValue
+    public String getType() {
+        return type;
+    }
 
     private CarTransmission(String type) {
         this.type = type;

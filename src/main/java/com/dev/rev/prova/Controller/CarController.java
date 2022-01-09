@@ -55,13 +55,13 @@ public class CarController {
 
     @ApiOperation(value = "Update a car")
     @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Car> updateCar(@PathVariable("id") Long id, @Valid @RequestBody Car car){
+    public ResponseEntity<Car> updateCar(@PathVariable("id") Long id, @Valid @RequestBody Car car) throws CarNotFoundException {
         return carService.update(id, car);
     }
 
     @ApiOperation(value = "Patch char update")
     @PatchMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @Valid @RequestBody Map<Object, Object> fields){
+    public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @Valid @RequestBody Map<Object, Object> fields) throws CarNotFoundException {
         return carService.patch(id, fields);
     }
 

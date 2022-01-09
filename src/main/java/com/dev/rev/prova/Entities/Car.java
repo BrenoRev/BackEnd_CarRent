@@ -4,6 +4,7 @@ import com.dev.rev.prova.Enums.CarColor;
 import com.dev.rev.prova.Enums.CarFuel;
 import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -35,16 +36,6 @@ public class Car implements Serializable {
     @NotNull(message = "The Brand can't be null")
     private Brand brand;
 
-    @Column(name= "car_type")
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "Car type can't be null")
-    private CarType carType;
-
-    @Column(name = "car_transmission")
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "Car's tramission type can't be null")
-    private CarTransmission carTransmission;
-
     @Column(name = "car_age")
     @Max(value = 2022, message = "Car's manufacturing date can't be over than 2022")
     @NotNull(message = "Car's manufacturing date is required")
@@ -62,15 +53,6 @@ public class Car implements Serializable {
     @NotNull(message = "Car's ipva can't be null")
     private Boolean ipva;
 
-    @Column(name = "car_color")
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "Car's color can't be null")
-    private CarColor color;
-
-    @Column(name = "car_fuel")
-    @Enumerated(EnumType.STRING)
-    @NotNull(message = "The type of car's fuel can't be null")
-    private CarFuel fuel;
 
     @Column(name = "car_reserved")
     @NotNull(message = "If the car is already reserved put true, else put false")
@@ -78,7 +60,27 @@ public class Car implements Serializable {
 
     @Column(name = "car_photo")
     @NotNull(message = "Car must have a photo")
-    private String foto;
+    private String photo;
+
+    @Column(name= "car_type")
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Car type can't be null")
+    private CarType carType;
+
+    @Column(name = "car_transmission")
+    @Enumerated(EnumType.STRING)
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private CarTransmission carTransmission;
+
+    @Column(name = "car_color")
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Car's color can't be null")
+    private CarColor carColor;
+
+    @Column(name = "car_fuel")
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "The type of car's fuel can't be null")
+    private CarFuel carFuel;
 
     @Override
     public boolean equals(Object o) {

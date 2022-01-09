@@ -1,10 +1,7 @@
 package com.dev.rev.prova.Enums;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-import java.io.Serializable;
-
-@Getter
 public enum CarColor{
 
     AMARELO("Amarelo"),
@@ -23,6 +20,11 @@ public enum CarColor{
     OUTROS("Outros");
 
     private final String cor;
+
+    @JsonValue
+    public String getCor() {
+        return cor;
+    }
 
     private CarColor(String color) {
         this.cor = color;

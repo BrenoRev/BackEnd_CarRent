@@ -58,14 +58,19 @@ public class CarService {
 
     @Modifying
     @Transactional
-    public ResponseEntity<Car> update(Long id, Car car) {
-        car.setId(id);
-        return new ResponseEntity<Car>(carRepository.save(car), HttpStatus.ACCEPTED);
+    public ResponseEntity<Car> update(Long id, Car car) throws CarNotFoundException {
+        if(carRepository.findById(id).isPresent()) {
+            car.setId(id);
+            return new ResponseEntity<Car>(carRepository.save(car), HttpStatus.ACCEPTED);
+        }
+        else{
+            throw new CarNotFoundException("Car with this id wasn't found");
+        }
     }
 
     @Modifying
     @Transactional
-    public ResponseEntity<Car> patch(Long id, Map<Object, Object> fields) {
+    public ResponseEntity<Car> patch(Long id, Map<Object, Object> fields) throws CarNotFoundException {
 
         Optional<Car> carro = carRepository.findById(id);
         if (carro.isPresent()) {
@@ -74,7 +79,7 @@ public class CarService {
             // TODO: RESOLVER PROBLEMA COM O REFLECTIONS NÃO CONSEGUINDO INTERAR OS ENUMS
 
             if (fields.containsKey("color")) {
-                carObject.setColor(EnumType.valueOf(CarColor.class, fields.get("color").toString()));
+                carObject.setCarColor(EnumType.valueOf(CarColor.class, fields.get("color").toString()));
                 fields.remove("color");
                 }
             if(fields.containsKey("carType")){
@@ -86,7 +91,7 @@ public class CarService {
                 fields.remove("carTransmission");
                 }
             if(fields.containsKey("fuel")){
-                carObject.setFuel(EnumType.valueOf(CarFuel.class, fields.get("fuel").toString()));
+                carObject.setCarFuel(EnumType.valueOf(CarFuel.class, fields.get("fuel").toString()));
                 fields.remove("fuel");
                 }
 
@@ -101,7 +106,7 @@ public class CarService {
             return new ResponseEntity<Car>(carObject, HttpStatus.OK);
         }
 
-        return null;
+        throw new CarNotFoundException("Car with that id wasn't found");
     }
 
     public ResponseEntity<Page<Car>> getPage(Pageable pageable) {

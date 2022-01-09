@@ -1,5 +1,6 @@
 package com.dev.rev.prova.Enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,6 +16,11 @@ public enum CarType {
     VAN("Van");
 
     private String type;
+
+    @JsonValue
+    public String getType() {
+        return type;
+    }
 
     private CarType(String type) {
         this.type = type;

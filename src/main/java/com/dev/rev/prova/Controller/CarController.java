@@ -29,42 +29,43 @@ public class CarController {
     private CarService carService;
 
     @ApiOperation(value = "Get car by id")
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Car> getById(@PathVariable("id") Long id) throws CarNotFoundException {
         return carService.getById(id);
     }
 
     @ApiOperation(value = "Get all cars")
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<Car>> getAllCars(){
         return carService.getAllCars();
     }
 
     @ApiOperation(value = "Save a car")
-    @PostMapping("/")
+    @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Car> saveCar(@Valid @RequestBody Car car){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/car/id_created").toUriString());
         return ResponseEntity.created(uri).body(carService.saveCar(car));
     }
 
     @ApiOperation(value = "Delete a car")
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteCarById(@PathVariable("id") Long id) throws CarNotFoundException {
         return carService.deleteCarById(id);
     }
 
     @ApiOperation(value = "Update a car")
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Car> updateCar(@PathVariable("id") Long id, @Valid @RequestBody Car car){
         return carService.update(id, car);
     }
 
     @ApiOperation(value = "Patch char update")
-    @PatchMapping("/{id}")
+    @PatchMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @Valid @RequestBody Map<Object, Object> fields){
         return carService.patch(id, fields);
     }
 
+    @ApiOperation(value = "Pagination car's search")
     @GetMapping(value = "/pagination", produces = "application/json")
     public ResponseEntity<Page<Car>> getCarsByPage(@PageableDefault(direction = Sort.Direction.DESC, size = 10, sort = "price") Pageable pageable){
         return carService.getPage(pageable);

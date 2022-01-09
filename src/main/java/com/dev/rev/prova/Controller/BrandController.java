@@ -20,7 +20,7 @@ public class BrandController {
     BrandService brandService;
 
     @ApiOperation(value = "Get all brands")
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<Brand>> getAllBrands(){
         return brandService.getAllBrands();
     }

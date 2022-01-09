@@ -21,13 +21,13 @@ public class ModelController {
     private ModelService modelService;
 
     @ApiOperation(value = "Get models by brand")
-    @GetMapping("/{brand}")
+    @GetMapping(value = "/{brand}", produces = "application/json")
     public ResponseEntity<List<Model>> getModelByBrand(@PathVariable("brand") String brand) throws ModelNotFoundException {
         return modelService.getByBrand(brand);
     }
 
     @ApiOperation(value = "Get all models of cars")
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<Model>> getAllModels(){
         return modelService.getAllModels();
     }

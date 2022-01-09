@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class CarController {
 
     @ApiOperation(value = "Save a car")
     @PostMapping("/")
-    public ResponseEntity<Car> saveCar(@RequestBody Car car){
+    public ResponseEntity<Car> saveCar(@Valid @RequestBody Car car){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/car/id_created").toUriString());
         return ResponseEntity.created(uri).body(carService.saveCar(car));
     }
@@ -50,13 +51,13 @@ public class CarController {
 
     @ApiOperation(value = "Update a car")
     @PutMapping("/{id}")
-    public ResponseEntity<Car> updateCar(@PathVariable("id") Long id, @RequestBody Car car){
+    public ResponseEntity<Car> updateCar(@PathVariable("id") Long id, @Valid @RequestBody Car car){
         return carService.update(id, car);
     }
 
     @ApiOperation(value = "Patch char update")
     @PatchMapping("/{id}")
-    public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @RequestBody Map<Object, Object> fields){
+    public ResponseEntity<Car> patchCar(@PathVariable("id") Long id, @Valid @RequestBody Map<Object, Object> fields){
         return carService.patch(id, fields);
     }
 }

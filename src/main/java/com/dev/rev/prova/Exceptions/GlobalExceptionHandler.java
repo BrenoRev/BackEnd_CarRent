@@ -5,9 +5,11 @@ import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -49,4 +51,21 @@ public class GlobalExceptionHandler {
         erro.setCurrentDate(LocalDateTime.now().format(formatter));
         return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    protected ResponseEntity<Object> NotValidCar(Exception ex) {
+
+        String errorDescription = ex.getLocalizedMessage();
+
+        if(errorDescription == null) {
+            errorDescription = ex.toString();
+        }
+
+        ErrorDetails erro = new ErrorDetails();
+        erro.setError(errorDescription);
+        erro.setCode(HttpStatus.BAD_REQUEST.toString());
+        erro.setCurrentDate(LocalDateTime.now().format(formatter));
+        return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
 }

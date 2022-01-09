@@ -13,6 +13,7 @@ import org.springframework.data.util.ReflectionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.EnumType;
 import javax.transaction.Transactional;
@@ -37,13 +38,11 @@ public class CarService {
         return new ResponseEntity<Car>(car, HttpStatus.OK);
     }
 
-    @Modifying
     @Transactional
     public Car saveCar(Car car) {
         return carRepository.save(car);
     }
 
-    @Modifying
     @Transactional
     public ResponseEntity<String> deleteCarById(Long id) throws CarNotFoundException {
         try {

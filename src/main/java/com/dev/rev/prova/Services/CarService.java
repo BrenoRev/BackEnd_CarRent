@@ -41,7 +41,7 @@ public class CarService {
         return new ResponseEntity<Car>(car, HttpStatus.OK);
     }
 
-    
+    @Transactional
     public Car saveCar(Car car) {
         return carRepository.save(car);
     }
@@ -78,21 +78,21 @@ public class CarService {
 
             // TODO: RESOLVER PROBLEMA COM O REFLECTIONS NÃO CONSEGUINDO INTERAR OS ENUMS
 
-            if (fields.containsKey("color")) {
-                carObject.setCarColor(EnumType.valueOf(CarColor.class, fields.get("color").toString()));
-                fields.remove("color");
+            if (fields.containsKey("carColor")) {
+                carObject.setCarColor(EnumType.valueOf(CarColor.class, fields.get("carColor").toString().toUpperCase()));
+                fields.remove("carColor");
                 }
             if(fields.containsKey("carType")){
-                carObject.setCarType(EnumType.valueOf(CarType.class, fields.get("carType").toString()));
+                carObject.setCarType(EnumType.valueOf(CarType.class, fields.get("carType").toString().toUpperCase()));
                 fields.remove("carType");
                 }
             if(fields.containsKey("carTransmission")){
-                carObject.setCarTransmission(EnumType.valueOf(CarTransmission.class, fields.get("carTransmission").toString()));
+                carObject.setCarTransmission(EnumType.valueOf(CarTransmission.class, fields.get("carTransmission").toString().toUpperCase()));
                 fields.remove("carTransmission");
                 }
-            if(fields.containsKey("fuel")){
-                carObject.setCarFuel(EnumType.valueOf(CarFuel.class, fields.get("fuel").toString()));
-                fields.remove("fuel");
+            if(fields.containsKey("carFuel")){
+                carObject.setCarFuel(EnumType.valueOf(CarFuel.class, fields.get("carFuel").toString().toUpperCase()));
+                fields.remove("carFuel");
                 }
 
 

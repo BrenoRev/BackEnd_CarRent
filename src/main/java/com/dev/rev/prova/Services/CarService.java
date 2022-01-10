@@ -1,5 +1,22 @@
 package com.dev.rev.prova.Services;
 
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.persistence.EnumType;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.util.ReflectionUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
 import com.dev.rev.prova.Entities.Car;
 import com.dev.rev.prova.Enums.CarColor;
 import com.dev.rev.prova.Enums.CarFuel;
@@ -7,23 +24,6 @@ import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
 import com.dev.rev.prova.Repositories.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.util.ReflectionUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import javax.persistence.EnumType;
-import javax.transaction.Transactional;
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class CarService {
@@ -41,7 +41,7 @@ public class CarService {
         return new ResponseEntity<Car>(car, HttpStatus.OK);
     }
 
-    @Transactional
+    
     public Car saveCar(Car car) {
         return carRepository.save(car);
     }

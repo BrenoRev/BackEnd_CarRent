@@ -1,7 +1,10 @@
 package com.dev.rev.prova.Exceptions;
 
-import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
-import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,9 +14,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
+import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -21,7 +23,7 @@ public class GlobalExceptionHandler {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     // Global
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class, io.jsonwebtoken.SignatureException.class})
     protected ResponseEntity<Object> GlobalExpcetion(Exception ex) {
 
         ErrorDetails erro =

@@ -2,6 +2,8 @@ package com.dev.rev.prova.Enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.*;
+
 public enum CarColor{
 
     AMARELO("Amarelo"),
@@ -19,7 +21,10 @@ public enum CarColor{
     VERMELHO("Vermelho"),
     OUTROS("Outros");
 
-    private final String cor;
+    private String cor;
+
+    CarColor() {
+    }
 
     @JsonValue
     public String getCor() {

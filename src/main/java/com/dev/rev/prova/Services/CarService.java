@@ -24,6 +24,7 @@ import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
 import com.dev.rev.prova.Repositories.CarRepository;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Service
 public class CarService {
@@ -47,13 +48,13 @@ public class CarService {
     }
 
     @Modifying
-    public ResponseEntity<String> deleteCarById(Long id) throws CarNotFoundException {
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCarById(Long id) throws CarNotFoundException {
         try {
             carRepository.deleteById(id);
         } catch (Exception excep) {
             throw new CarNotFoundException("Car with id " + id + " doesn't exists");
         }
-        return new ResponseEntity<String>("Car has been deleted sucessfully", HttpStatus.OK);
     }
 
     @Modifying

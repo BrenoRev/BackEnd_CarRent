@@ -36,6 +36,9 @@ public class JWTTokenAutenticacaoService {
     // Gerando token de autenticado e adicionando ao cabeçalho de resposta Http
     public void addAuthentication(HttpServletResponse response, String username) throws Exception {
 
+        Usuario user = ApplicationContextLoad.getApplicationContext()
+                .getBean(UsuarioRepository.class).findUserByLogin(username);
+
         // Montagem do token
 
         // Chama o gerador de Token
@@ -44,14 +47,15 @@ public class JWTTokenAutenticacaoService {
                 .setSubject(username)
                 // Seta um limite de tempo até deslogar o usuário
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .claim("roles", user.getAuthorities())
                 // Adiciona um algoritmo pra criptografar a token e geração da senha
                 .signWith(SignatureAlgorithm.HS512, SECRET).compact();
 
         // Concatena o token com o prefixo
-        String token = TOKEN_PREFIX + " " + JWT; // Bearer SenhaSecreta---*-*xs-x*s-x*-sx*-s
+        String token = TOKEN_PREFIX + " " + JWT; // Bearer SenhaSecreta
 
         // Adiciona no cabeçalho HTTP
-        response.addHeader(HEADER_STRING, token); // Authorization: Bearer SenhaSecreta---*-*xs-x*s-x*-sx*-s
+        response.addHeader(HEADER_STRING, token); // Authorization: Bearer SenhaSecreta
 
         // Atualiza a Token do usuario no banco de dados
         ApplicationContextLoad.getApplicationContext()

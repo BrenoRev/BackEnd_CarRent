@@ -19,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,8 +33,8 @@ import lombok.Data;
 public class Usuario implements UserDetails{
     private static final long serialVersionUID = 1L;
 
-    @SequenceGenerator(name="sequence_id",sequenceName="HIB_SEQ", initialValue = 2)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sequence_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Id
     private Long id;
 
@@ -42,6 +44,7 @@ public class Usuario implements UserDetails{
     @Column(name = "user_password")
     private String senha;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @ManyToMany(fetch = FetchType.EAGER)
  // Criar uma tabela no banco de dados com o id do usuario e o id da role que ele tem
  	@JoinTable(name = "usuarios_role", uniqueConstraints = @UniqueConstraint(
@@ -53,6 +56,7 @@ public class Usuario implements UserDetails{
  	foreignKey = @ForeignKey (name="role_fk" , value = ConstraintMode.CONSTRAINT)))
     private List<Role> roles = new ArrayList<>(); /* Os Acessos */
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "user_token")
     private String token = "";
 
@@ -62,37 +66,36 @@ public class Usuario implements UserDetails{
         return roles;
     }
 
-    @JsonIgnore
     @Override
     public String getPassword() {
         return this.senha;
     }
 
-    @JsonIgnore
+
     @Override
     public String getUsername() {
         return this.login;
     }
 
-    @JsonIgnore
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @JsonIgnore
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @JsonIgnore
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @JsonIgnore
+
     @Override
     public boolean isEnabled() {
         return true;

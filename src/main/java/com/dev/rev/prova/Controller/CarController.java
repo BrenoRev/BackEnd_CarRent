@@ -49,8 +49,8 @@ public class CarController {
 
     @ApiOperation(value = "Delete a car")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteCarById(@PathVariable("id") Long id) throws CarNotFoundException {
-        return carService.deleteCarById(id);
+    public void deleteCarById(@PathVariable("id") Long id) throws CarNotFoundException {
+         carService.deleteCarById(id);
     }
 
     @ApiOperation(value = "Update a car")

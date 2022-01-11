@@ -22,7 +22,7 @@ import java.util.Objects;
 public class Car implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -35,6 +35,10 @@ public class Car implements Serializable {
     @JoinColumn(name = "brand_id")
     @NotNull(message = "The Brand can't be null")
     private Brand brand;
+
+    @Column(name = "car_name")
+    @NotNull(message = "Car's name is required")
+    private String name;
 
     @Column(name = "car_age")
     @Max(value = 2022, message = "Car's manufacturing date can't be over than 2022")

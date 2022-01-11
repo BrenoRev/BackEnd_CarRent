@@ -22,12 +22,12 @@ import java.util.Objects;
 public class Brand implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "car_models")
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.MERGE)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Model> models = new ArrayList<>();
 

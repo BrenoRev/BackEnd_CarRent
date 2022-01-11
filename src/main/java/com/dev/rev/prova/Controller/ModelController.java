@@ -27,7 +27,7 @@ public class ModelController {
     }
 
     @ApiOperation(value = "Get all models of cars")
-    @GetMapping(value = "/", produces = "application/json")
+    @GetMapping(value = "/all", produces = "application/json")
     public ResponseEntity<List<Model>> getAllModels(){
         return modelService.getAllModels();
     }

@@ -26,12 +26,12 @@ public class Car implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "model_id")
     @NotNull(message = "The model can't be null")
     private Model model;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "brand_id")
     @NotNull(message = "The Brand can't be null")
     private Brand brand;

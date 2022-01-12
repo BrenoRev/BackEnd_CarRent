@@ -73,18 +73,25 @@ INSERT INTO Usuarios_role (usuario_id, role_id) values(1, 1);
 
 -- Audi
 INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
-Values (1,'Audi Q3 TFSI AMBIENTE' ,2018, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 71.581,
- 'https://images.kavak.services/images/156622/EXTERIOR-frontSidePilotNear-1641617231142.jpeg?d=540x310', 121.799, false, 1, 5);
+Values (1,'Audi Q3 TFSI AMBIENTE' ,2018, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 71581,
+ 'https://s3.ecompletocarros.dev/images/lojas/103/veiculos/35898/veiculoInfoVeiculoImagesMobile/vehicle_image_1599262418_a1559fe1ef60e4473f5b2791f5125e7b.jpeg', 121799, false, 1, 5);
 
 INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
-Values (2,'Audi A1 TFSI SPORT' ,2013, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 97.616,
- 'https://images.kavak.services/images/128713/EXTERIOR-frontSidePilotNear-16361455448285.jpg?d=540x310', 80.499, false, 1, 1);
+Values (2,'Audi A1 TFSI SPORT' ,2013, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 97616,
+ 'https://i.ytimg.com/vi/9C3eidGTIAI/maxresdefault.jpg', 80499, false, 1, 1);
 
  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
- Values (3,'Audi A3 TFSI SEDAN', 2015, 'CINZA', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 59.000,
-  'https://images.kavak.services/images/120673/a3-audi-tfsi-sedan-2015-exterior-frontsidepilotnear-16347263831111.jpg?d=540x310', 101.799, false, 1, 2);
+ Values (3,'Audi A3 TFSI SEDAN', 2015, 'CINZA', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 59000,
+  'https://cdn.motor1.com/images/mgl/KV8yG/s1/audi-a3-sedan-comeca-a-ser-produzido-no-brasil.jpg', 101799, false, 1, 2);
 
 -- BMW
  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
- Values (4, 'BMW X1 TURBO ACTIVE SDRIVE20l',2019, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SUV', true, 53.700,
-  'https://images.kavak.services/images/145658/EXTERIOR-frontSidePilotNear-1639609349454.jpeg?d=540x310', 200.999, false, 2, 12);
+ Values (4, 'BMW X1 TURBO ACTIVE SDRIVE20l',2019, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SUV', true, 53700,
+  'https://s3.ecompletocarros.dev/images/lojas/164/veiculos/30143/veiculoInfoVeiculoImagesMobile/vehicle_image_1594846610_63c85d8fea3a65f4a0888e30607c53a7.jpeg', 200999, false, 2, 12);
+
+
+
+
+
+
+

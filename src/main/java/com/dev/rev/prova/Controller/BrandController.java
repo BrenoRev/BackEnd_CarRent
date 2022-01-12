@@ -24,4 +24,10 @@ public class BrandController {
     public ResponseEntity<List<Brand>> getAllBrands(){
         return brandService.getAllBrands();
     }
+
+    @ApiOperation(value = "Save brand of cars")
+    @PostMapping("/")
+    public ResponseEntity<Brand> saveBrand(@RequestBody Brand brand){
+        return brandService.saveBrand(brand);
+    }
 }

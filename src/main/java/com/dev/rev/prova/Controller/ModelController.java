@@ -27,9 +27,14 @@ public class ModelController {
     }
 
     @ApiOperation(value = "Get all models of cars")
-    @GetMapping(value = "/all", produces = "application/json")
+    @GetMapping(value = "/", produces = "application/json")
     public ResponseEntity<List<Model>> getAllModels(){
         return modelService.getAllModels();
     }
 
+    @ApiOperation(value = "Save all models of cars")
+    @PostMapping("/{brand}")
+    public ResponseEntity<List<Model>> saveModels(@RequestBody List<Model> models, @PathVariable("brand") String brand){
+        return modelService.saveModels(models, brand);
+    }
 }

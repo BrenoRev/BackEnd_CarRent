@@ -1,8 +1,9 @@
 package com.dev.rev.prova.Services;
 
+import com.dev.rev.prova.Entities.Brand;
 import com.dev.rev.prova.Entities.Model;
-import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
 import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
+import com.dev.rev.prova.Repositories.BrandRepository;
 import com.dev.rev.prova.Repositories.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,9 @@ import java.util.List;
 
 @Service
 public class ModelService {
+
+    @Autowired
+    private BrandRepository brandRepository;
 
     @Autowired
     private ModelRepository modelRepository;
@@ -30,5 +34,11 @@ public class ModelService {
 
     public ResponseEntity<List<Model>> getAllModels(){
         return new ResponseEntity<List<Model>>(modelRepository.findAll(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Model>> saveModels(List<Model> models, String name){
+        Brand brand = brandRepository.findByName(name);
+        models.forEach(x -> x.setBrand(brand));
+        return new ResponseEntity<List<Model>>(modelRepository.saveAll(models),HttpStatus.OK);
     }
 }

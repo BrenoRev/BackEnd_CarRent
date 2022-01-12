@@ -32,7 +32,7 @@ public class Brand implements Serializable {
     private List<Model> models = new ArrayList<>();
 
     @NotNull(message = "The brand's name can't be null")
-    @Column(name = "brand")
+    @Column(name = "brand", unique = true)
     private String name;
 
     @Override

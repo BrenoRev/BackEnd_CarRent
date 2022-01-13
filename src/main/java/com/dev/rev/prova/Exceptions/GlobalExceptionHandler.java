@@ -39,15 +39,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({DataIntegrityViolationException.class, ConstraintViolationException.class, SQLException.class})
     protected ResponseEntity<Object> SqlException(Exception ex) {
 
-        String errorDescription = ex.getLocalizedMessage();
-
-        if (errorDescription == null) {
-            errorDescription = ex.toString();
-        }
-
         ErrorDetails erro = new ErrorDetails();
 
-        erro.setError(errorDescription);
+        erro.setError("Já existe um dado com esse valor");
         erro.setCode(HttpStatus.CONFLICT.toString());
         erro.setCurrentDate(LocalDateTime.now().format(formatter));
         return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.CONFLICT);

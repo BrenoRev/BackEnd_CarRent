@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,23 +34,33 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Cacheable("car")
     public ResponseEntity<List<Car>> getAllCars() {
         return new ResponseEntity<List<Car>>(carRepository.findAll(), HttpStatus.OK);
     }
 
+    @Cacheable("car")
     public ResponseEntity<Car> getById(Long id) throws CarNotFoundException {
         Car car = carRepository.findById(id)
                 .orElseThrow(() -> new CarNotFoundException("Car with id " + id + " not found"));
         return new ResponseEntity<Car>(car, HttpStatus.OK);
     }
 
+    @Cacheable("car")
+    public ResponseEntity<Page<Car>> getPage(Pageable pageable) {
+        Page<Car> pageCars = carRepository.findAll(pageable);
+        return new ResponseEntity<Page<Car>>(pageCars, HttpStatus.OK);
+    }
+
     @Transactional
+    @CacheEvict(value = "car", allEntries = true)
     public Car saveCar(Car car) {
         return carRepository.save(car);
     }
 
     @Modifying
     @ResponseStatus(HttpStatus.OK)
+    @CacheEvict(value = "car", allEntries = true)
     public void deleteCarById(Long id) throws CarNotFoundException {
         try {
             carRepository.deleteById(id);
@@ -59,6 +71,7 @@ public class CarService {
 
     @Modifying
     @Transactional
+    @CacheEvict(value = "car", allEntries = true)
     public ResponseEntity<Car> update(Long id, Car car) throws CarNotFoundException {
         if(carRepository.findById(id).isPresent()) {
             car.setId(id);
@@ -71,6 +84,7 @@ public class CarService {
 
     @Modifying
     @Transactional
+    @CacheEvict(value = "car", allEntries = true)
     public ResponseEntity<Car> patch(Long id, Map<Object, Object> fields) throws CarNotFoundException {
 
         Optional<Car> carro = carRepository.findById(id);
@@ -110,8 +124,5 @@ public class CarService {
         throw new CarNotFoundException("Car with that id wasn't found");
     }
 
-    public ResponseEntity<Page<Car>> getPage(Pageable pageable) {
-        Page<Car> pageCars = carRepository.findAll(pageable);
-        return new ResponseEntity<Page<Car>>(pageCars, HttpStatus.OK);
-    }
+
 }

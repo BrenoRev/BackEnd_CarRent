@@ -6,6 +6,8 @@ import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
 import com.dev.rev.prova.Repositories.BrandRepository;
 import com.dev.rev.prova.Repositories.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class ModelService {
     @Autowired
     private ModelRepository modelRepository;
 
+    @Cacheable("model")
     public ResponseEntity<List<Model>> getByBrand(String brand) throws ModelNotFoundException {
             List<Model> models = modelRepository.getAllByBrand(brand);
 
@@ -32,10 +35,11 @@ public class ModelService {
 
     }
 
+    @Cacheable("model")
     public ResponseEntity<List<Model>> getAllModels(){
         return new ResponseEntity<List<Model>>(modelRepository.findAll(), HttpStatus.OK);
     }
-
+    @CacheEvict(value = "model", allEntries = true)
     public ResponseEntity<List<Model>> saveModels(List<Model> models, String name){
         Brand brand = brandRepository.findByName(name);
         models.forEach(x -> x.setBrand(brand));

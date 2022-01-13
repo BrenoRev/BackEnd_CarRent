@@ -26,7 +26,7 @@ public class Model implements Serializable {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @Column(name = "model")
+    @Column(name = "model", nullable = false)
     private String name;
 
     @Override

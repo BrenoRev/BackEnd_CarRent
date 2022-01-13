@@ -1,10 +1,12 @@
 package com.dev.rev.prova.Exceptions;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,11 +30,29 @@ public class GlobalExceptionHandler {
 
         ErrorDetails erro =
                 new ErrorDetails(ex.getLocalizedMessage(),
-                HttpStatus.NOT_ACCEPTABLE.toString(),
-                LocalDateTime.now().format(formatter));
+                        HttpStatus.NOT_ACCEPTABLE.toString(),
+                        LocalDateTime.now().format(formatter));
 
         return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
     }
+
+    @ExceptionHandler({DataIntegrityViolationException.class, ConstraintViolationException.class, SQLException.class})
+    protected ResponseEntity<Object> SqlException(Exception ex) {
+
+        String errorDescription = ex.getLocalizedMessage();
+
+        if (errorDescription == null) {
+            errorDescription = ex.toString();
+        }
+
+        ErrorDetails erro = new ErrorDetails();
+
+        erro.setError(errorDescription);
+        erro.setCode(HttpStatus.CONFLICT.toString());
+        erro.setCurrentDate(LocalDateTime.now().format(formatter));
+        return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
 
     @ExceptionHandler(CarNotFoundException.class)
     protected ResponseEntity<Object> CarException(Exception ex) {
@@ -68,7 +88,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(erro, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     protected ResponseEntity<Object> NotValidCar(Exception ex) {
 
         String errorDescription = ex.getLocalizedMessage();

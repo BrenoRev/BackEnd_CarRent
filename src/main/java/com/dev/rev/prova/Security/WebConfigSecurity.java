@@ -48,38 +48,30 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     			"/swagger/*"
     	};
     	
-    	http
-    	// H2
-    	.headers().frameOptions().disable()
-    	.and()
-		.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-		.disable().authorizeRequests().antMatchers(blankList).permitAll()
-		.and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-    	.authorizeRequests()
-    	.antMatchers(blankList).permitAll()
-    	.antMatchers(HttpMethod.POST, "/api/v1/*").hasRole("ADMIN")
-    	.antMatchers(HttpMethod.PUT, "/api/v1/*").hasRole("ADMIN")
-    	.antMatchers(HttpMethod.DELETE, "/api/v1/*").hasRole("ADMIN")
-    	.antMatchers(HttpMethod.PATCH, "/api/v1/*").hasRole("ADMIN")
-    	.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
-    	.and()
-		.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-		.addFilterBefore(new JwtApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class)
-		.authorizeRequests()
-		.anyRequest()
-		.authenticated();
+		http
+				// H2
+				.headers().frameOptions().disable().and().csrf()
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).disable().authorizeRequests()
+				.antMatchers(blankList).permitAll().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers(blankList)
+				.permitAll().antMatchers(HttpMethod.POST, "/api/v1/*").hasRole("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/v1/*").hasRole("ADMIN").antMatchers(HttpMethod.DELETE, "/api/v1/*")
+				.hasRole("ADMIN").antMatchers(HttpMethod.PATCH, "/api/v1/*").hasRole("ADMIN")
+				.antMatchers(HttpMethod.GET, "/api/v1/**").permitAll().and()
+				.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+						UsernamePasswordAuthenticationFilter.class)
+				.addFilterBefore(new JwtApiAutenticacaoFilter(), UsernamePasswordAuthenticationFilter.class)
+				.authorizeRequests().anyRequest().authenticated();
 
-    }
+	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Service que irá consultar o usuário no banco de dados
-        auth.userDetailsService(implementacaoUserDetailsService)
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// Service que irá consultar o usuário no banco de dados
+		auth.userDetailsService(implementacaoUserDetailsService)
 
-                // Padrão de codificação de senha do usuário com BCryptPasswordEncoder
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }
+				// Padrão de codificação de senha do usuário com BCryptPasswordEncoder
+				.passwordEncoder(new BCryptPasswordEncoder());
+	}
 
 }

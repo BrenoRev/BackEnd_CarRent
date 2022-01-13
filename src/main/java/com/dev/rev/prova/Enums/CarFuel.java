@@ -4,6 +4,7 @@ package com.dev.rev.prova.Enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CarFuel {
+	
     DIESEL("Diesel"),
     FLEX("Flex"),
     GASOLINA("Gasolina"),

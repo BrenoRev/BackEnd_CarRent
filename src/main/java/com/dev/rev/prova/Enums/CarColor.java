@@ -2,7 +2,6 @@ package com.dev.rev.prova.Enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import javax.persistence.*;
 
 public enum CarColor{
 

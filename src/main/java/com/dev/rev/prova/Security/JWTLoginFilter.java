@@ -1,4 +1,5 @@
 package com.dev.rev.prova.Security;
+
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -6,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dev.rev.prova.Security.Entity.Usuario;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,44 +14,45 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.dev.rev.prova.Security.Entity.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // Estabelece o nosso gerenciador de Token
-public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter{
+public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-    // Configurando o gerenciador de Autenticação
-    protected JWTLoginFilter(String url, AuthenticationManager authenticationManager) {
+	// Configurando o gerenciador de Autenticação
+	protected JWTLoginFilter(String url, AuthenticationManager authenticationManager) {
 
+		// Obriga a autenticar a URL
+		super(new AntPathRequestMatcher(url));
 
-        // Obriga a autenticar a URL
-        super(new AntPathRequestMatcher(url));
+		// Gerenciador de autenticação
+		setAuthenticationManager(authenticationManager);
+	}
 
-        // Gerenciador de autenticação
-        setAuthenticationManager(authenticationManager);
-    }
+	// Retorna o usuário ao processar a autenticação
+	@Override
+	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
+			throws AuthenticationException, IOException, ServletException {
 
-    // Retorna o usuário ao processar a autenticação
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+		// Está pegando o token para validar
+		Usuario user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
 
-        // Está pegando o token para validar
-        Usuario user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
+		// Retorna o usuário login, senha e acessos
+		return getAuthenticationManager()
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword()));
+	}
 
-        // Retorna o usuário login, senha e acessos
-        return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword()));
-    }
+	// Método de autenticação bem sucedida
+	@Override
+	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+			Authentication authResult) throws IOException, ServletException {
 
-    // Método de autenticação bem sucedida
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain chain, Authentication authResult) throws IOException, ServletException {
-
-        try {
-            new JWTTokenAutenticacaoService().addAuthentication(response, authResult.getName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		try {
+			new JWTTokenAutenticacaoService().addAuthentication(response, authResult.getName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

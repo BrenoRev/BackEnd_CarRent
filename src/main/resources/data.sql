@@ -48,9 +48,9 @@ INSERT INTO brand (id,brand) VALUES (6, 'Dodge');
     INSERT INTO model (id,model,brand_id) VALUES (29,'Journey',6);
     INSERT INTO model (id,model,brand_id) VALUES (30,'Ram',6);
 
--- Jaguar
-INSERT INTO brand (id,brand) VALUES (7, 'Jaguar');
-    INSERT INTO model (id,model,brand_id) VALUES (31,'XF',7);
+-- Mini
+INSERT INTO brand (id,brand) VALUES (7, 'Mini');
+    INSERT INTO model (id,model,brand_id) VALUES (31,'Cooper',7);
 
 -- Nissan
 INSERT INTO brand (id,brand) VALUES (8, 'Volvo');
@@ -72,26 +72,105 @@ INSERT INTO Usuarios_role (usuario_id, role_id) values(1, 1);
 -- Carros
 
 -- Audi
-INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
-Values (1,'Audi Q3 TFSI AMBIENTE' ,2018, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 71581,
- 'https://s3.ecompletocarros.dev/images/lojas/103/veiculos/35898/veiculoInfoVeiculoImagesMobile/vehicle_image_1599262418_a1559fe1ef60e4473f5b2791f5125e7b.jpeg', 121799, false, 1, 5);
 
 INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
-Values (2,'Audi A1 TFSI SPORT' ,2013, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 97616,
- 'https://i.ytimg.com/vi/9C3eidGTIAI/maxresdefault.jpg', 80499, false, 1, 1);
+Values (1,'Audi A1 TFSI SPORT' ,2013, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 100378,
+ 'x', 77799, false, 1, 1);
 
  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
- Values (3,'Audi A3 TFSI SEDAN', 2015, 'CINZA', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 59000,
-  'https://cdn.motor1.com/images/mgl/KV8yG/s1/audi-a3-sedan-comeca-a-ser-produzido-no-brasil.jpg', 101799, false, 1, 2);
+ Values (2,'AUDI A3 TFSI SEDAN AMBITION', 2015, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 104865,
+  '', 97799, false, 1, 2);
+
+ INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+ Values (3,'AUDI A4 TFSI SEDAN PRESTIGE PLUS', 2019, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 38400,
+  '', 214799, false, 1, 3);
+
+ INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+ Values (4,'AUDI A5 TFSI SPORTBACK PRESTIGE', 2019, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SEDAN', false, 16707,
+  '', 255999, true, 1, 4);
+
+INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+Values (5,'AUDI Q3 TFSI AMBIENTE' ,2018, 'CINZA', 'FLEX', 'AUTOMATICO', 'SUV', true, 71581,
+ 'x', 121799, true, 1, 5);
+
+ INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+ Values (6,'AUDI Q5 TFSI PRESTIGE PLUS' ,2019, 'PRETO', 'FLEX', 'AUTOMATICO', 'SUV', true, 37361,
+  'x', 30999, false, 1, 6);
+
+ INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+ Values (7,'AUDI Q7 TFSI QUATTRO V6' ,2014, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SUV', true, 96500,
+  'x', 185799, false, 1, 7);
 
 -- BMW
+
  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
- Values (4, 'BMW X1 TURBO ACTIVE SDRIVE20l',2019, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SUV', true, 53700,
-  'https://s3.ecompletocarros.dev/images/lojas/164/veiculos/30143/veiculoInfoVeiculoImagesMobile/vehicle_image_1594846610_63c85d8fea3a65f4a0888e30607c53a7.jpeg', 200999, false, 2, 12);
+ Values (8, 'BMW 116i TURBO',2019, 'VERMELHO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 25100,
+  '', 295000, false, 2, 8);
+
+  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+  Values (9, 'BMW 118i SPORT GP',2020, 'BRANCO', 'FLEX', 'AUTOMATICO', 'HATCHBACK', true, 10940,
+   '', 206799, false, 2, 9);
+
+ INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+ Values (10, 'BMW 318i SPORT',2019, 'CINZA', 'FLEX', 'AUTOMATICO', 'SEDAN', false, 90161,
+  '', 66799, true, 2, 10);
+
+  INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+  Values (11, 'BMW 330I TURBO SPORT',2020, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 39748,
+  '', 289299, true, 2, 11);
+
+   INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+   Values (12, 'BMW X1 TRUBO ACTIVE SDRIVE20l',2019, 'PRETO', 'FLEX', 'AUTOMATICO', 'SUV', true, 57598,
+    '', 181299, false, 2, 12);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+    Values (13, 'BMW X5 30D l6 TURBO',2020, 'PRETO', 'FLEX', 'AUTOMATICO', 'SUV', true, 87922,
+     '', 273999, false, 2, 13);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+    Values (14, 'BMW X6 M COUPE V8 BI-TURBO',2014, 'BRANCO', 'FLEX', 'AUTOMATICO', 'SUV', true, 73800,
+     '', 234999, false, 2, 14);
+
+-- Chery
+
+   INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+    Values (15, 'CHERY ARRIZO 5 VVT TURBO i RXT',2019, 'PRETO', 'FLEX', 'AUTOMATICO', 'SEDAN', true, 25244,
+     '', 75499, false, 3, 15);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+     Values (16, 'CHERY CELER MPFI',2015, 'AMARELO', 'FLEX', 'MANUAL', 'HATCHBACK', false, 89350,
+      '', 38000, true, 3, 16);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+    Values (17, 'CHERY QQ MPFI ACT',2018, 'BRANCO', 'GASOLINA', 'MANUAL', 'HATCHBACK', true, 56849,
+     '', 32999, false, 3, 17);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+       Values (18, 'CHERY TIGGO 5x VVT TURBO i TXS DCT',2019, 'CINZA', 'FLEX', 'MANUAL', 'SUV', true, 19545,
+        '', 105999, true, 3, 18);
 
 
+-- Chevrolet
 
 
+-- Citroen
+
+
+-- Dodge
+   INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+    Values (29, 'CITROEN JUMPY BLUEHDI MINIBUS',2020, 'BRANCO', 'GASOLINA', 'MANUAL', 'VAN', true, 15320,
+     '', 151799, false, 6, 29);
+
+    INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+       Values (30, 'DODGE RAM 2500 LARAMIE',2012, 'CINZA', 'FLEX', 'AUTOMATICO', 'PICKUP', true, 87500,
+        '', 224799, false, 6, 30);
+
+-- Jaguar
+      INSERT INTO car (id,car_name, car_age, car_color, car_fuel, car_transmission, car_type, car_ipva, car_km, car_photo, car_price, car_reserved, brand_id, model_id)
+           Values (31, 'MINI COOPER TWINPOWER S',2020, 'AZUL', 'FLEX', 'AUTOMATICO', 'HATCHBACK', true, 209799,
+            '', 209799, false, 7, 31);
+
+-- Volvo
 
 
 

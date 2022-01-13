@@ -3,6 +3,7 @@ package com.dev.rev.prova.Enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum CarTransmission {
+	
     AUTOMATICO("Automatico"),
     MANUAL("Manual");
 

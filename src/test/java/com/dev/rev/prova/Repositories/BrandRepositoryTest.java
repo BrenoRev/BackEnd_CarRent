@@ -36,7 +36,7 @@ class BrandRepositoryTest {
     }
 
     @Test
-    void findByName() {
+    void ItShouldGetBrandByName() {
 
         // Given
 
@@ -45,7 +45,6 @@ class BrandRepositoryTest {
         // Then
 
         assertThat(brandFound.getId().equals(brand.getId())).isTrue();
-        
         assertThat(brand.equals(brandFound)).isTrue();
 
     }

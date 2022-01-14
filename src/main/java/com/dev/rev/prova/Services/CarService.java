@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.persistence.EnumType;
 import javax.transaction.Transactional;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -29,6 +30,7 @@ import com.dev.rev.prova.Repositories.CarRepository;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Service
+@AllArgsConstructor
 public class CarService {
 
     @Autowired

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import com.dev.rev.prova.enums.CarColor;
@@ -25,16 +26,12 @@ import com.dev.rev.prova.enums.CarTransmission;
 import com.dev.rev.prova.enums.CarType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
+@ToString
 @Table(name = "Car")
 public class Car implements Serializable {
 

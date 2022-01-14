@@ -77,6 +77,7 @@ public class CarService {
     public ResponseEntity<Car> update(Long id, Car car) throws CarNotFoundException {
         if(carRepository.findById(id).isPresent()) {
             car.setId(id);
+            car.getModel().setBrand(car.getBrand());
             return new ResponseEntity<>(carRepository.save(car), HttpStatus.ACCEPTED);
         }
         else{

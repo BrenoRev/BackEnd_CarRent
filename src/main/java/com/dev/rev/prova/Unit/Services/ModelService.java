@@ -1,10 +1,10 @@
-package com.dev.rev.prova.Services;
+package com.dev.rev.prova.Unit.Services;
 
 import com.dev.rev.prova.Entities.Brand;
 import com.dev.rev.prova.Entities.Model;
 import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
-import com.dev.rev.prova.Repositories.BrandRepository;
-import com.dev.rev.prova.Repositories.ModelRepository;
+import com.dev.rev.prova.Unit.Repositories.BrandRepository;
+import com.dev.rev.prova.Unit.Repositories.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

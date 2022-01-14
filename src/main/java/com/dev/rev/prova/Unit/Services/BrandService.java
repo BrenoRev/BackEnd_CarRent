@@ -1,9 +1,8 @@
-package com.dev.rev.prova.Services;
+package com.dev.rev.prova.Unit.Services;
 
 import com.dev.rev.prova.Entities.Brand;
-import com.dev.rev.prova.Repositories.BrandRepository;
+import com.dev.rev.prova.Unit.Repositories.BrandRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

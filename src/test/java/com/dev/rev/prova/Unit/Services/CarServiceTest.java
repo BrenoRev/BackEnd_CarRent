@@ -1,4 +1,4 @@
-package com.dev.rev.prova.Services;
+package com.dev.rev.prova.Unit.Services;
 
 import com.dev.rev.prova.Entities.Brand;
 import com.dev.rev.prova.Entities.Car;
@@ -8,10 +8,9 @@ import com.dev.rev.prova.Enums.CarFuel;
 import com.dev.rev.prova.Enums.CarTransmission;
 import com.dev.rev.prova.Enums.CarType;
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
-import com.dev.rev.prova.Repositories.BrandRepository;
-import com.dev.rev.prova.Repositories.CarRepository;
-import com.dev.rev.prova.Repositories.ModelRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.dev.rev.prova.Unit.Repositories.BrandRepository;
+import com.dev.rev.prova.Unit.Repositories.CarRepository;
+import com.dev.rev.prova.Unit.Repositories.ModelRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -19,7 +18,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 
 
 import java.util.Optional;

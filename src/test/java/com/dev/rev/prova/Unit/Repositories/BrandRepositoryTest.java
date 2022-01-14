@@ -1,17 +1,13 @@
-package com.dev.rev.prova.Repositories;
+package com.dev.rev.prova.Unit.Repositories;
 
 import com.dev.rev.prova.Entities.Brand;
-import com.dev.rev.prova.Enums.CarColor;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.assertj.core.api.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class BrandRepositoryTest {

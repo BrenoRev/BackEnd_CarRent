@@ -1,4 +1,4 @@
-package com.dev.rev.prova.Repositories;
+package com.dev.rev.prova.Unit.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

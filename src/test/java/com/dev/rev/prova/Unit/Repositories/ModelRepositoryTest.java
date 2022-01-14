@@ -1,4 +1,4 @@
-package com.dev.rev.prova.Repositories;
+package com.dev.rev.prova.Unit.Repositories;
 
 import com.dev.rev.prova.Entities.Brand;
 import com.dev.rev.prova.Entities.Model;

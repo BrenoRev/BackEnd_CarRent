@@ -2,7 +2,7 @@ package com.dev.rev.prova.Controller;
 
 import com.dev.rev.prova.Entities.Car;
 import com.dev.rev.prova.Exceptions.classes.NotFound.CarNotFoundException;
-import com.dev.rev.prova.Services.CarService;
+import com.dev.rev.prova.Unit.Services.CarService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

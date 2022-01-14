@@ -38,6 +38,11 @@ https://github.com/BrenoRev/BackEnd_CarRent.git
 
 Open your IDE and import the project as Maven Project
 
+:warning: SET PROFILE TO DEV
+```
+spring.profiles.active=dev
+```
+
 Run project as Spring Boot Application
 
 The application should then compile and starting to mock SQL into H2-DB.

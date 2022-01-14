@@ -37,11 +37,6 @@ public class Brand implements Serializable {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "car_models")
-	@OneToMany(mappedBy = "brand", cascade = CascadeType.MERGE)
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private List<Model> models = new ArrayList<>();
-
 	@NotNull(message = "The brand's name can't be null")
 	@Column(name = "brand", unique = true)
 	private String name;

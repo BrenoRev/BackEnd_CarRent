@@ -17,18 +17,36 @@ import org.springframework.web.filter.GenericFilterBean;
 public class JwtApiAutenticacaoFilter extends GenericFilterBean {
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 
 		// Estabelece a autenticação para a requisição
-		Authentication authenticator = new JWTTokenAutenticacaoService().getAuthentication((HttpServletRequest) request,
-				(HttpServletResponse) response);
+		Authentication authenticator = new JWTTokenAutenticacaoService().getAuthentication((HttpServletRequest) req,
+				(HttpServletResponse) resp);
 
 		// Coloca o processo de autenticação no spring security
-		SecurityContextHolder.getContext().setAuthentication(authenticator);
 
-		// Continua o processo
-		chain.doFilter(request, response);
+		SecurityContextHolder.getContext().setAuthentication(authenticator);
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) resp;
+
+
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+
+		response.setHeader("Access-Control-Allow-Credentials", "true");
+
+		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+
+
+		if ("OPTIONS".equals(request.getMethod())) {
+			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+			response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+			response.setHeader("Access-Control-Max-Age", "3600");
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			chain.doFilter(req, resp);
+		}
+
 	}
 
 }

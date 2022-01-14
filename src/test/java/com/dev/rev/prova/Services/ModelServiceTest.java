@@ -1,8 +1,8 @@
-package com.dev.rev.prova.Unit.Services;
+package com.dev.rev.prova.Services;
 
 import com.dev.rev.prova.Entities.Model;
-import com.dev.rev.prova.Unit.Repositories.BrandRepository;
-import com.dev.rev.prova.Unit.Repositories.ModelRepository;
+import com.dev.rev.prova.Repositories.BrandRepository;
+import com.dev.rev.prova.Repositories.ModelRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

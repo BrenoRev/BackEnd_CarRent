@@ -1,7 +1,7 @@
-package com.dev.rev.prova.Unit.Services;
+package com.dev.rev.prova.Services;
 
 import com.dev.rev.prova.Entities.Brand;
-import com.dev.rev.prova.Unit.Repositories.BrandRepository;
+import com.dev.rev.prova.Repositories.BrandRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,6 +32,7 @@ class BrandServiceTest {
         brandService.getAllBrands();
         // Then
         verify(brandRepository).findAll();
+
     }
 
     @Test

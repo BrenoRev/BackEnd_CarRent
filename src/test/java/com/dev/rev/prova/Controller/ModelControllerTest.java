@@ -5,7 +5,7 @@ import static org.mockito.Mockito.when;
 
 import com.dev.rev.prova.Entities.Model;
 import com.dev.rev.prova.Exceptions.classes.NotFound.ModelNotFoundException;
-import com.dev.rev.prova.Unit.Services.ModelService;
+import com.dev.rev.prova.Services.ModelService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;

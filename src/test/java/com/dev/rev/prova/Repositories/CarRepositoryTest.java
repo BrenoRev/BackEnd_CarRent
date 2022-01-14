@@ -1,4 +1,4 @@
-package com.dev.rev.prova.car;
+package com.dev.rev.prova.Repositories;
 
 import com.dev.rev.prova.Entities.Brand;
 import com.dev.rev.prova.Entities.Car;

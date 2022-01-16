@@ -30,7 +30,7 @@ import lombok.Setter;
 @Table(name = "model")
 public class Model implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private Long id;
 

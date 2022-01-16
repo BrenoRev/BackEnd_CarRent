@@ -3,17 +3,7 @@ package com.dev.rev.prova.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
@@ -36,7 +26,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Car implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="sequence_car", initialValue = 37)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_car")
 	@Column(name = "id", nullable = false)
 	private Long id;
 

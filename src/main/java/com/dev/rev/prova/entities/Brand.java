@@ -25,7 +25,8 @@ import lombok.Setter;
 public class Brand implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name="sequence_brand", initialValue = 9)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_brand")
 	@Column(name = "id", nullable = false)
 	private Long id;
 

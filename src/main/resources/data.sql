@@ -1,9 +1,50 @@
 -- AUDI --
 
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (1, 'Audi');
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (1, 'Audi');
+
+-- Nissan --
+
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (8, 'Nissan');
+
+-- BMW--
+
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (2, 'Bmw');
+-- Chery --
+
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (3, 'Chery');
+
+-- Chevrolet --
+
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (4, 'Chevrolet');
+
+ -- Citroen --
+
+     INSERT INTO
+         brand (id, brand)
+     VALUES
+         (5, 'Citroen');
+
+-- Dodge --
+
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (6, 'Dodge');
 
 INSERT INTO
     model (id, model, brand_id)
@@ -40,12 +81,7 @@ INSERT INTO
 VALUES
     (7, 'Q7', 1);
 
--- BMW--
-
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (2, 'Bmw');
+-- Bmw
 
 INSERT INTO
     model (id, model, brand_id)
@@ -82,12 +118,7 @@ INSERT INTO
 VALUES
     (14, 'X6', 2);
 
--- Chery --
-
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (3, 'Chery');
+-- Cherry
 
 INSERT INTO
     model (id, model, brand_id)
@@ -109,12 +140,8 @@ INSERT INTO
 VALUES
     (18, 'Tiggo 5x', 3);
 
--- Chevrolet --
+-- Chevrolet
 
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (4, 'Chevrolet');
 
 INSERT INTO
     model (id, model, brand_id)
@@ -141,12 +168,7 @@ INSERT INTO
 VALUES
     (23, 'Vectra', 4);
 
--- Citroen --
-
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (5, 'Citroen');
+-- Citroen
 
 INSERT INTO
     model (id, model, brand_id)
@@ -173,12 +195,7 @@ INSERT INTO
 VALUES
     (28, 'Aircross', 5);
 
--- Dodge --
-
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (6, 'Dodge');
+-- Dodge
 
 INSERT INTO
     model (id, model, brand_id)
@@ -192,22 +209,17 @@ VALUES
 
 -- Mini --
 
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (7, 'Mini');
+    INSERT INTO
+        brand (id, brand)
+    VALUES
+        (7, 'Mini');
 
 INSERT INTO
     model (id, model, brand_id)
 VALUES
     (31, 'Cooper', 7);
 
--- Nissan --
-
-INSERT INTO
-    brand (id, brand)
-VALUES
-    (8, 'Nissan');
+-- Nissan
 
 INSERT INTO
     model (id, model, brand_id)
